@@ -87,9 +87,9 @@
   // Add as many valid codes as you like (case-insensitive).
   // Each one can point to its own destination page.
   const codeMap = {
-    "KEVY":   "secret.html",
-    "OPENEYE":      "secret.html",
-    "STACY": "secret.html",
+    "KEVY":   "Kevy.html",
+    "OPENEYE":      "Openeye.html",
+    "STACY": "Her.html",
     // "ANOTHERCODE": "another-page.html",
   };
   // ------------------------------------------------------
@@ -99,14 +99,14 @@
     const message = document.getElementById('message');
 
     if (codeMap.hasOwnProperty(input)) {
-      message.style.color = "#33ff66";
-      message.textContent = "ACCESS GRANTED. Redirecting...";
+      message.style.color = "#ffffff";
+      message.textContent = "GRANTED.";
       setTimeout(() => {
         window.location.href = codeMap[input];
       }, 900);
     } else {
-      message.style.color = "#ff3333";
-      message.textContent = "ACCESS DENIED. Try again.";
+      message.style.color = "#ffffff";
+      message.textContent = "DENIED";
     }
   }
 
