@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENTER CODE</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fg: #33ff66;
+    --err: #ff3333;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    letter-spacing: 4px;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 8px var(--fg);
+  }
+  input {
+    background: transparent;
+    border: 2px solid var(--fg);
+    color: var(--fg);
+    font-family: inherit;
+    font-size: 1.2rem;
+    padding: 10px 14px;
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    outline: none;
+    width: 260px;
+    max-width: 80vw;
+  }
+  input::placeholder { color: #227744; }
+  button {
+    margin-top: 16px;
+    background: var(--fg);
+    color: var(--bg);
+    border: none;
+    padding: 10px 24px;
+    font-family: inherit;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  button:hover { opacity: 0.85; }
+  #message {
+    margin-top: 18px;
+    min-height: 20px;
+    color: var(--err);
+  }
+  .flicker {
+    animation: flicker 1.5s infinite alternate;
+  }
+  @keyframes flicker {
+    0%,18%,22%,25%,53%,57%,100% { opacity: 1; }
+    20%,24%,55% { opacity: 0.4; }
+  }
+</style>
+</head>
+<body>
+
+  <h1 class="flicker">// AWAITING ACCESS CODE //</h1>
+
+  <input type="text" id="codeInput" placeholder="Enter code" autocomplete="off" spellcheck="false">
+  <br>
+  <button onclick="checkCode()">SUBMIT</button>
+  <div id="message"></div>
+
+<script>
+  // --- CONFIG -----------------------------------------
+  // Add as many valid codes as you like (case-insensitive).
+  // Each one can point to its own destination page.
+  const codeMap = {
+    "REDLIGHT":   "secret.html",
+    "TRUTH":      "secret.html",
+    // "ANOTHERCODE": "another-page.html",
+  };
+  // ------------------------------------------------------
+
+  function checkCode() {
+    const input = document.getElementById('codeInput').value.trim().toUpperCase();
+    const message = document.getElementById('message');
+
+    if (codeMap.hasOwnProperty(input)) {
+      message.style.color = "#33ff66";
+      message.textContent = "ACCESS GRANTED. Redirecting...";
+      setTimeout(() => {
+        window.location.href = codeMap[input];
+      }, 900);
+    } else {
+      message.style.color = "#ff3333";
+      message.textContent = "ACCESS DENIED. Try again.";
+    }
+  }
+
+  // Allow pressing Enter to submit
+  document.getElementById('codeInput').addEventListener('keyup', function(e) {
+    if (e.key === "Enter") checkCode();
+  });
+</script>
+
+</body>
+</html>
